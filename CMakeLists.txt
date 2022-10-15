@@ -30,7 +30,7 @@ if(WITH_BOOST_TEST)
     add_executable(test_version test_version.cpp)
 
     set_target_properties(test_version PROPERTIES
-        CXX_STANDARD 14
+        CXX_STANDARD 17
         CXX_STANDARD_REQUIRED ON
     )
 
@@ -46,28 +46,16 @@ if(WITH_BOOST_TEST)
 endif()
 
 if (MSVC)
-    target_compile_options(helloworld_cli PRIVATE
-        /W4
-    )
-    target_compile_options(helloworld PRIVATE
-        /W4
-    )
+    target_compile_options(helloworld_cli PRIVATE /W4)
+    target_compile_options(helloworld PRIVATE /W4)
     if(WITH_BOOST_TEST)
-        target_compile_options(test_version PRIVATE
-            /W4
-        )
+        target_compile_options(test_version PRIVATE /W4)
     endif()
 else ()
-    target_compile_options(helloworld_cli PRIVATE
-        -Wall -Wextra -pedantic -Werror
-    )
-    target_compile_options(helloworld PRIVATE
-        -Wall -Wextra -pedantic -Werror
-    )
+    target_compile_options(helloworld_cli PRIVATE -Wall -Wextra -pedantic -Werror)
+    target_compile_options(helloworld PRIVATE -Wall -Wextra -pedantic -Werror)
     if(WITH_BOOST_TEST)
-        target_compile_options(test_version PRIVATE
-            -Wall -Wextra -pedantic -Werror
-        )
+        target_compile_options(test_version PRIVATE -Wall -Wextra -pedantic -Werror)
     endif()
 endif()
 
